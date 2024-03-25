@@ -36,7 +36,6 @@ public class TodoItem {
 
     public void setName(String name) {
         this.name = name;
-        return;
     }
 
     public String getCategory() {
