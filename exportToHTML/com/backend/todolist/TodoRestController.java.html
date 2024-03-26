@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>TodoRestController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TodoRestController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">backend</span><span class="s2">.</span><span class="s1">todolist</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">beans</span><span class="s2">.</span><span class="s1">factory</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">Autowired</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">stereotype</span><span class="s2">.</span><span class="s1">Controller</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">RequestMapping</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">RequestParam</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">ResponseBody</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">GetMapping</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">bind</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">PostMapping</span><span class="s2">;</span>
+
+<span class="s1">@Controller</span>
+<span class="s1">@RequestMapping</span><span class="s2">(</span><span class="s1">path </span><span class="s2">= </span><span class="s3">&quot;/todo&quot;</span><span class="s2">)</span>
+<span class="s0">public class </span><span class="s1">TodoRestController </span><span class="s2">{</span>
+
+    <span class="s1">@Autowired</span>
+    <span class="s0">private </span><span class="s1">TodoItemRepository repository</span><span class="s2">;</span>
+
+    <span class="s1">@GetMapping</span><span class="s2">(</span><span class="s3">&quot;/all&quot;</span><span class="s2">)</span>
+    <span class="s0">public </span><span class="s1">@ResponseBody Iterable</span><span class="s2">&lt;</span><span class="s1">TodoItem</span><span class="s2">&gt; </span><span class="s1">getAll</span><span class="s2">() {</span>
+        <span class="s1">Iterable</span><span class="s2">&lt;</span><span class="s1">TodoItem</span><span class="s2">&gt; </span><span class="s1">todoList </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">findAll</span><span class="s2">();</span>
+        <span class="s0">return </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">findAll</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@PostMapping</span><span class="s2">(</span><span class="s3">&quot;/add&quot;</span><span class="s2">)</span>
+    <span class="s0">public </span><span class="s1">@ResponseBody Result addItem</span><span class="s2">(</span><span class="s1">@RequestParam String name</span><span class="s2">, </span><span class="s1">@RequestParam String category</span><span class="s2">) {</span>
+        <span class="s1">TodoItem item </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TodoItem</span><span class="s2">(</span><span class="s1">category</span><span class="s2">, </span><span class="s1">name</span><span class="s2">);</span>
+        <span class="s1">TodoItem saved </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">save</span><span class="s2">(</span><span class="s1">item</span><span class="s2">);</span>
+        <span class="s0">return new </span><span class="s1">Result</span><span class="s2">(</span><span class="s3">&quot;Added&quot;</span><span class="s2">, </span><span class="s1">saved</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@PostMapping</span><span class="s2">(</span><span class="s3">&quot;/update&quot;</span><span class="s2">)</span>
+    <span class="s0">public </span><span class="s1">@ResponseBody Result updateItem</span><span class="s2">(</span><span class="s1">@RequestParam </span><span class="s0">long </span><span class="s1">id</span><span class="s2">, </span><span class="s1">@RequestParam String name</span><span class="s2">,</span>
+                                           <span class="s1">@RequestParam String category</span><span class="s2">, </span><span class="s1">@RequestParam </span><span class="s0">boolean </span><span class="s1">isComplete</span><span class="s2">) {</span>
+        <span class="s1">TodoItem item </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TodoItem</span><span class="s2">(</span><span class="s1">category</span><span class="s2">, </span><span class="s1">name</span><span class="s2">);</span>
+        <span class="s1">item</span><span class="s2">.</span><span class="s1">setId</span><span class="s2">(</span><span class="s1">id</span><span class="s2">);</span>
+        <span class="s1">item</span><span class="s2">.</span><span class="s1">setComplete</span><span class="s2">(</span><span class="s1">isComplete</span><span class="s2">);</span>
+        <span class="s1">TodoItem saved </span><span class="s2">= </span><span class="s1">repository</span><span class="s2">.</span><span class="s1">save</span><span class="s2">(</span><span class="s1">item</span><span class="s2">);</span>
+        <span class="s0">return new </span><span class="s1">Result</span><span class="s2">(</span><span class="s3">&quot;Updated&quot;</span><span class="s2">, </span><span class="s1">saved</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">class </span><span class="s1">Result </span><span class="s2">{</span>
+        <span class="s0">private </span><span class="s1">String status</span><span class="s2">;</span>
+        <span class="s0">private </span><span class="s1">TodoItem item</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">Result</span><span class="s2">() {</span>
+            <span class="s1">status </span><span class="s2">= </span><span class="s3">&quot;&quot;</span><span class="s2">;</span>
+            <span class="s1">item </span><span class="s2">= </span><span class="s0">null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s0">public </span><span class="s1">Result</span><span class="s2">(</span><span class="s1">String status</span><span class="s2">, </span><span class="s1">TodoItem item</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">status </span><span class="s2">= </span><span class="s1">status</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">item </span><span class="s2">= </span><span class="s1">item</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">TodoItem getItem</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">item</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public void </span><span class="s1">setItem</span><span class="s2">(</span><span class="s1">TodoItem item</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">item </span><span class="s2">= </span><span class="s1">item</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public </span><span class="s1">String getStatus</span><span class="s2">() {</span>
+            <span class="s0">return </span><span class="s1">status</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public void </span><span class="s1">setStatus</span><span class="s2">(</span><span class="s1">String status</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">status </span><span class="s2">= </span><span class="s1">status</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

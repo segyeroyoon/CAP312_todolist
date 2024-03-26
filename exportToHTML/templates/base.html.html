@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>base.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #d5b778;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bababa;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+base.html</font>
+</center></td></tr></table>
+<pre><span class="s0">&lt;!DOCTYPE </span><span class="s2">HTML</span><span class="s0">&gt;</span>
+<span class="s0">&lt;html </span><span class="s2">xmlns:th</span><span class="s3">=&quot;http://www.thymeleaf.org&quot;</span><span class="s0">&gt;</span>
+
+<span class="s0">&lt;head </span><span class="s2">th:fragment</span><span class="s3">=&quot;head(title)&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;title </span><span class="s2">th:replace</span><span class="s3">=&quot;${title}&quot;</span><span class="s0">&gt;</span><span class="s1">Spring MySQL Todo Sample</span><span class="s0">&lt;/title&gt;</span>
+    <span class="s0">&lt;meta </span><span class="s2">http-equiv</span><span class="s3">=&quot;Content-Type&quot; </span><span class="s2">content</span><span class="s3">=&quot;text/html; charset=UTF-8&quot; </span><span class="s0">/&gt;</span>
+
+    <span class="s4">&lt;!-- Bootstrap --&gt;</span>
+    <span class="s4">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+    <span class="s0">&lt;link </span><span class="s2">rel</span><span class="s3">=&quot;stylesheet&quot;</span>
+          <span class="s2">href</span><span class="s3">=&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css&quot;</span>
+          <span class="s2">integrity</span><span class="s3">=&quot;sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu&quot;</span>
+          <span class="s2">crossorigin</span><span class="s3">=&quot;anonymous&quot;</span><span class="s0">&gt;</span>
+
+<span class="s0">&lt;/head&gt;</span>
+
+<span class="s0">&lt;body </span><span class="s2">style</span><span class="s3">=&quot;</span><span class="s2">padding-top</span><span class="s1">:</span><span class="s5">50</span><span class="s3">px</span><span class="s1">;</span><span class="s3">&quot; </span><span class="s2">th:fragment</span><span class="s3">=&quot;body(heading, content)&quot;</span><span class="s0">&gt;</span>
+<span class="s4">&lt;!-- Nav Bar --&gt;</span>
+
+<span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;navbar navbar-inverse navbar-fixed-top&quot; </span><span class="s2">role</span><span class="s3">=&quot;navigation&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;container&quot;</span><span class="s0">&gt;</span>
+        <span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;navbar-header&quot;</span><span class="s0">&gt;</span>
+            <span class="s0">&lt;a </span><span class="s2">class</span><span class="s3">=&quot;navbar-brand&quot; </span><span class="s2">href</span><span class="s3">=&quot;#&quot;</span><span class="s0">&gt;</span><span class="s1">Tasks</span><span class="s0">&lt;/a&gt;</span>
+        <span class="s0">&lt;/div&gt;</span>
+    <span class="s0">&lt;/div&gt;</span>
+<span class="s0">&lt;/div&gt;</span>
+
+<span class="s4">&lt;!-- Body --&gt;</span>
+<span class="s0">&lt;div </span><span class="s2">class</span><span class="s3">=&quot;container&quot;</span><span class="s0">&gt;</span>
+    <span class="s0">&lt;h1 </span><span class="s2">th:replace</span><span class="s3">=&quot;${heading}&quot;</span><span class="s0">&gt;</span><span class="s1">Page Heading</span><span class="s0">&lt;/h1&gt;</span>
+
+    <span class="s0">&lt;hr /&gt;</span>
+
+    <span class="s0">&lt;th:block </span><span class="s2">th:replace</span><span class="s3">=&quot;${content}&quot; </span><span class="s0">/&gt;</span>
+
+<span class="s0">&lt;/div&gt;</span>
+<span class="s4">&lt;!-- Placed at the end of the document so the pages load faster --&gt;</span>
+<span class="s4">&lt;!-- Latest compiled and minified JavaScript --&gt;</span>
+<span class="s0">&lt;script </span><span class="s2">src</span><span class="s3">=&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js&quot;</span>
+        <span class="s2">integrity</span><span class="s3">=&quot;sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd&quot;</span>
+        <span class="s2">crossorigin</span><span class="s3">=&quot;anonymous&quot;</span><span class="s0">&gt;</span>
+<span class="s0">&lt;/script&gt;</span>
+
+<span class="s0">&lt;/body&gt;</span>
+
+<span class="s0">&lt;/html&gt;</span></pre>
+</body>
+</html>
